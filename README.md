@@ -13,7 +13,7 @@ There are also two helper methods:
 
 `IP.get_ip_address_from_headers(headers: dict)`
 
-`IP.lookup_ip_info(ip_addres: str, ip_stack_api_key: str)`
+`IP.lookup_ip_info(ip_address: str, ip_stack_api_key: str)`
 
 
     
