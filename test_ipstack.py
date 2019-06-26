@@ -16,13 +16,13 @@ def get_env_variable(var_name):
         raise EnvironmentError(error_msg)
 
 
-class IPTestCase(unittest.TestCase):
+class IPStackTestCase(unittest.TestCase):
     ACCESS_KEY = get_env_variable('IPSTACK_ACCESS_KEY')
     TEST_IP_ADDRESS = "103.3.61.114"
     TEST_IP_ADDRESS2 = "231.34.31.102"
 
     def test_init(self):
-        ip = IP(self.TEST_IP_ADDRESS, self.ACCESS_KEY)
+        ip = IPStack(self.TEST_IP_ADDRESS, self.ACCESS_KEY)
         self.assertEqual(ip.continent_code, 'AS')
         self.assertEqual(ip.continent_name, 'Asia')
         self.assertEqual(ip.country_code, 'SG')
@@ -36,11 +36,11 @@ class IPTestCase(unittest.TestCase):
 
     def test_get_ip_address_from_headers(self):
         headers = {'X-Forwarded-For': ",".join([self.TEST_IP_ADDRESS, self.TEST_IP_ADDRESS2])}
-        ip_address = IP.get_ip_address_from_headers(headers)
+        ip_address = IPStack.get_ip_address_from_headers(headers)
         self.assertEqual(ip_address, self.TEST_IP_ADDRESS)
 
     def test_lookup_ip_info(self):
-        json = IP.lookup_ip_info(self.TEST_IP_ADDRESS, self.ACCESS_KEY)
+        json = IPStack.lookup_ip_info(self.TEST_IP_ADDRESS, self.ACCESS_KEY)
         self.assertIn('ip', json)
         self.assertEqual(json['ip'], self.TEST_IP_ADDRESS)
 
@@ -48,4 +48,4 @@ class IPTestCase(unittest.TestCase):
     def test_lookup_ip_info__http_error(self, mock_get):
         mock_get.return_value = MagicMock(status_code=400)
         with self.assertRaises(requests.HTTPError):
-            json = IP.lookup_ip_info(self.TEST_IP_ADDRESS, self.ACCESS_KEY)
+            json = IPStack.lookup_ip_info(self.TEST_IP_ADDRESS, self.ACCESS_KEY)

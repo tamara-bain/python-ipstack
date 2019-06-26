@@ -8,7 +8,7 @@ from typing import Optional
 import requests
 
 
-class IP():
+class IPStack():
 
     def __init__(self, ip_address: str, ip_stack_api_key: str, include_security=True):
         """
