@@ -1,5 +1,5 @@
 ## python-ipstack
-python-ipstack provides an object wrapper for IPStack (ipstack.com) https requests and responses. 
+python-ipstack provides an object wrapper for IPStack (ipstack.com) https requests and responses. You will need an access key from ipstack.com to use this library.
 
 #### Example:
 
