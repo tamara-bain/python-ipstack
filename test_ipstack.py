@@ -44,6 +44,10 @@ class IPStackTestCase(unittest.TestCase):
         self.assertIn('ip', json)
         self.assertEqual(json['ip'], self.TEST_IP_ADDRESS)
 
+    def test_invalid_token(self):
+        with self.assertRaises(requests.HTTPError):
+            IPStack(self.TEST_IP_ADDRESS, None)
+
     @patch.object(requests, 'get')
     def test_lookup_ip_info__http_error(self, mock_get):
         mock_get.return_value = MagicMock(status_code=400)

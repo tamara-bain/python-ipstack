@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='Python IPStack',
-    version='1.1',
+    version='1.2',
     url='https://github.com/tamara-bain/python-ipstack',
     license='MIT',
     description='Python wrapper for IPStack.com requests and responses.',
