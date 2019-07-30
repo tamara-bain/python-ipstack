@@ -18,7 +18,7 @@ class IPStack():
         self.ip_address = ip_address
         result = self.lookup_ip_info(ip_address, ip_stack_api_key)
 
-        if not result['success']:
+        if 'ip' not in result:
             raise requests.exceptions.HTTPError(str(result))
 
         self.continent_code: Optional[str] = result['continent_code']
